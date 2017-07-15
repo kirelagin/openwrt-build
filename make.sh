@@ -10,7 +10,7 @@ host_files_dir="configs/$host/files"
 
 [ -f "$host_profile_file" -a -f "$host_pkgs_file" -a -d "$host_files_dir" ] || { echo "Invalid host configurateion"; exit 2; }
 
-make -C "$builder_dir"  image PROFILE="$(cat "$host_profile_file")" PACKAGES="$(cat "$host_pkgs_file" | tr '\n' ' ')" FILES="$host_files_dir/"
+make -C "$builder_dir"  image PROFILE="$(cat "$host_profile_file")" PACKAGES="$(cat "$host_pkgs_file" | tr '\n' ' ')" FILES="$(readlink -f "$host_files_dir")/"
 
 
 echo
