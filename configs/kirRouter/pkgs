@@ -17,13 +17,17 @@
 -uhttpd
 -uhttpd-mod-ubus
 
+
+kmod-nls-utf8
+
+ip
+ss
 6in4
+wpad-mini
+
+ethtool
+tcpdump
+iwinfo
+
 avahi-nodbus-daemon
 ca-certificates
-ethtool
-ip
-iwinfo
-kmod-nls-utf8
-ss
-tcpdump
-wpad-mini
