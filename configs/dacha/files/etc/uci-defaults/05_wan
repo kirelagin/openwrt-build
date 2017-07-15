@@ -1,0 +1,10 @@
+#!/bin/sh
+
+
+uci batch <<EOF
+set network.wan.ifname='usb0'
+set network.wan.proto='dhcp'
+EOF
+uci commit network
+
+exit 0
