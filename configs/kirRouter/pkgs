@@ -21,6 +21,7 @@
 avahi-nodbus-daemon
 ca-certificates
 ethtool
+ip
 iwinfo
 kmod-nls-utf8
 ss
