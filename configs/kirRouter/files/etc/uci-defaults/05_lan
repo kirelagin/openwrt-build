@@ -1,0 +1,22 @@
+#!/bin/sh
+
+
+uci batch <<EOF
+set network.lan.ipaddr='172.16.0.1'
+set network.lan.netmask='255.255.254.0'
+set network.lan.ip6assign='64'
+EOF
+uci commit network
+
+uci batch <<EOF
+set dhcp.local.start='266'
+set dhcp.local.limit='245'
+set dhcp.local.dhcpv4='server'
+set dhcp.local.dhcpv6='disabled'
+set dhcp.local.ra_management='0'
+set dhcp.local.ra='server'
+set dhcp.local.ndp='disabled'
+EOF
+uci commit dhcp
+
+exit 0

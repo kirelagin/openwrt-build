@@ -1,0 +1,19 @@
+#!/bin/sh
+
+
+uci batch <<EOF
+set network.wan.proto='static'
+set network.wan.ipaddr='10.188.37.24'
+set network.wan.netmask='255.255.252.0'
+set network.wan.gateway='10.188.36.1'
+add_list network.wan.dns='8.8.8.8'
+EOF
+uci commit network
+
+uci batch <<EOF
+add_list dhcp.@dnsmasq[0].server='/zet/192.168.248.21'
+add_list dhcp.@dnsmasq[0].rebind_domain='zet'
+EOF
+uci commit dhcp
+
+exit 0

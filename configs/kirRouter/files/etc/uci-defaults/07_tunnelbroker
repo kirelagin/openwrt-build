@@ -1,0 +1,25 @@
+#!/bin/sh
+
+
+setup_tunnelbroker() {
+    local name=$1
+    local peer=$2
+    local addr=$3
+    local prefix=$4
+    local metric=$5
+
+    uci batch <<EOF
+set network.${name}='interface'
+set network.${name}.proto='6in4'
+set network.${name}.peeraddr='$peer'
+set network.${name}.ip6addr='$addr'
+set network.${name}.ip6prefix='$prefix'
+EOF
+    [ -n "$metric" ] && uci set network.${name}.metric=$metric
+}
+
+setup_tunnelbroker he6   '216.66.80.30'   '2001:470:1f0a:18b::2/64' '2001:470:1f0b:18b::/64'
+
+uci commit network
+
+exit 0
