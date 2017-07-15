@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 openwrt_version="15.05.1"
 builder_dir="OpenWrt-ImageBuilder-$openwrt_version-ar71xx-generic.Linux-x86_64"
 
