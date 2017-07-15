@@ -13,12 +13,14 @@ host_files_dir="$configs_dir/$host/files"
 
 [ -f "$host_profile_file" -a -f "$host_pkgs_file" -a -d "$host_files_dir" ] || { echo "Invalid host configurateion"; exit 2; }
 
-make -C "$builder_dir"  image PROFILE="$(cat "$host_profile_file")" PACKAGES="$(cat "$host_pkgs_file" | tr '\n' ' ')" FILES="$(readlink -f "$host_files_dir")/"
+out_dir="$(readlink -f "$builder_dir/bin/$host")"
+
+make -C "$builder_dir"  image BIN_DIR="$out_dir" PROFILE="$(cat "$host_profile_file")" PACKAGES="$(cat "$host_pkgs_file" | tr '\n' ' ')" FILES="$(readlink -f "$host_files_dir")/"
 
 
 echo
 echo "--------------------"
 echo
 
-echo "Root is: $builder_dir/build_dir/target-mips_34kc_uClibc-*/root-ar71xx/"
-echo "Image: $builder_dir/bin/ar71xx/openwrt-$openwrt_version-ar71xx-generic-*-squashfs-sysupgrade.bin"
+img="$(ls "$builder_dir/bin/$host/openwrt-$openwrt_version-ar71xx-generic-"*"-squashfs-sysupgrade.bin")"
+echo "Image: [$img]"
