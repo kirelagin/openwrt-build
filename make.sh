@@ -13,14 +13,15 @@ host_files_dir="$configs_dir/$host/files"
 
 [ -f "$host_profile_file" -a -f "$host_pkgs_file" -a -d "$host_files_dir" ] || { echo "Invalid host configurateion"; exit 2; }
 
+profile=$(cat "$host_profile_file")
 out_dir="$(readlink -f "$builder_dir/bin/$host")"
 
-make -C "$builder_dir"  image BIN_DIR="$out_dir" PROFILE="$(cat "$host_profile_file")" PACKAGES="$(cat "$host_pkgs_file" | tr '\n' ' ')" FILES="$(readlink -f "$host_files_dir")/"
+make -C "$builder_dir"  image BIN_DIR="$out_dir" PROFILE="$profile" PACKAGES="$(cat "$host_pkgs_file" | tr '\n' ' ')" FILES="$(readlink -f "$host_files_dir")/"
 
 
 echo
 echo "--------------------"
 echo
 
-img="$(ls "$builder_dir/bin/$host/lede-$openwrt_version-ar71xx-generic-"*"-squashfs-sysupgrade.bin")"
+img="$(ls "$builder_dir/bin/$host/lede-$openwrt_version-ar71xx-generic-$profile-squashfs-sysupgrade.bin")"
 echo "Image: [$img]"
