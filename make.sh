@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-openwrt_version="15.05.1"
-builder_dir="OpenWrt-ImageBuilder-$openwrt_version-ar71xx-generic.Linux-x86_64"
+openwrt_version="17.01.2"
+builder_dir="lede-imagebuilder-$openwrt_version-ar71xx-generic.Linux-x86_64"
 configs_dir="./configs"
 
 host="$1"
@@ -22,5 +22,5 @@ echo
 echo "--------------------"
 echo
 
-img="$(ls "$builder_dir/bin/$host/openwrt-$openwrt_version-ar71xx-generic-"*"-squashfs-sysupgrade.bin")"
+img="$(ls "$builder_dir/bin/$host/lede-$openwrt_version-ar71xx-generic-"*"-squashfs-sysupgrade.bin")"
 echo "Image: [$img]"
