@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ $BUTTON == "wps" ]; then
+  path="/sys/class/leds/tp-link:green:wps"
+  echo win >> /tmp/but
+
+  case $ACTION in
+    pressed)
+      echo 255 > "$path/brightness"
+      ;;
+    released)
+      echo 0 > "$path/brightness"
+      ;;
+  esac
+fi

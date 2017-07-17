@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ $ACTION == "released" ] ; then
+  if [ $BUTTON == "BTN_1" ] ; then
+    logger "Slider 3G"
+  elif [ $BUTTON == "BTN_0" ] ; then
+    logger "Slider WISP"
+  fi
+elif [ $BUTTON == "BTN_0" ] || [ $BUTTON == "BTN_1" ] ; then
+  if grep -qe "sw1.*in  hi" /sys/kernel/debug/gpio ; then
+    if grep -qe "sw2.*in  hi" /sys/kernel/debug/gpio ; then
+      logger "Slider AP"
+    fi
+  fi
+fi

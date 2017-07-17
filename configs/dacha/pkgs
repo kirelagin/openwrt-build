@@ -18,9 +18,9 @@
 -uhttpd-mod-ubus
 
 
+kmod-usb-net-asix
 kmod-usb-net-rndis
 
 ip
-wpad-mini
-
 iwinfo
+wpad-mini
