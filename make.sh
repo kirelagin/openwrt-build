@@ -15,7 +15,9 @@ host_files_dir="$configs_dir/$host/files"
 
 profile=$(cat "$host_profile_file")
 out_dir="$(readlink -f "$builder_dir/bin/$host")"
+img_file="$builder_dir/bin/$host/lede-$openwrt_version-ar71xx-generic-$profile-squashfs-sysupgrade.bin"
 
+rm -f "$img_file"
 make -C "$builder_dir"  image BIN_DIR="$out_dir" PROFILE="$profile" PACKAGES="$(cat "$host_pkgs_file" | tr '\n' ' ')" FILES="$(readlink -f "$host_files_dir")/"
 
 
@@ -23,5 +25,9 @@ echo
 echo "--------------------"
 echo
 
-img="$(ls "$builder_dir/bin/$host/lede-$openwrt_version-ar71xx-generic-$profile-squashfs-sysupgrade.bin")"
-echo "Image: [$img]"
+if [ -s "$img_file" ]; then
+  echo "Image: [$img_file]"
+else
+  echo "FAIL"
+  exit 1
+fi
