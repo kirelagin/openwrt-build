@@ -17,7 +17,9 @@ host_files_dir="$configs_dir/$host/files"
 
 target=$(cat "$host_target_file" | head -n 1)
 profile=$(cat "$host_target_file" | tail -n +2 | tail -n 1)
+
 builder_dir="lede-imagebuilder-$openwrt_version-$target.Linux-x86_64"
+[ -d "$builder_dir" ] || { echo "Image generator is missing"; exit 3; }
 out_dir="$(readlink -f "$builder_dir/bin/$host")"
 img_file="$builder_dir/bin/$host/lede-$openwrt_version-$target-$profile-squashfs-sysupgrade.bin"
 
