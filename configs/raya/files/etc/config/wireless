@@ -1,0 +1,15 @@
+config wifi-device 'radio0'
+	option type 'mac80211'
+	option macaddr '00:26:5a:2e:0b:02'
+	option hwmode '11g'
+	option country 'RU'
+	option channel '3'
+	option htmode 'HT40'
+
+config wifi-iface
+	option device 'radio0'
+	option network 'lan'
+	option mode 'ap'
+	option ssid 'rayaNet'
+	option encryption 'psk2+ccmp'
+	option key 'rayaNetPaSS'

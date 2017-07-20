@@ -1,0 +1,52 @@
+config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fd6b:34cb:9719::/48'
+
+config interface 'lan'
+	option ifname 'eth0.1'
+	option type 'bridge'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+	option ip6assign '60'
+
+config device 'lan_dev'
+	option name 'eth0.1'
+	option macaddr '00:26:5a:2e:0b:02'
+
+config interface 'wan'
+	option ifname 'eth0.2'
+        option proto 'static'
+        option ipaddr '10.36.172.27'
+        option gateway '10.36.172.1'
+        option netmask '255.255.255.0'
+        list dns '85.114.0.81'
+        list dns '85.114.2.81'
+
+config device 'wan_dev'
+	option name 'eth0.2'
+	option macaddr '00:26:5a:2e:0b:03'
+
+config interface 'wan6'
+	option ifname 'eth0.2'
+	option proto 'dhcpv6'
+
+config switch
+	option name 'rt305x'
+	option reset '1'
+	option enable_vlan '1'
+
+config switch_vlan
+	option device 'rt305x'
+	option vlan '1'
+	option ports '0 1 2 3 5 6t'
+
+config switch_vlan
+	option device 'rt305x'
+	option vlan '2'
+	option ports '4 6t'
