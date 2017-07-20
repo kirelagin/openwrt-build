@@ -33,6 +33,7 @@ echo
 
 if [ -s "$img_file" ]; then
   echo "Image: [$img_file]"
+  shasum -a 256 "$img_file"
 else
   echo "FAIL"
   exit 1
