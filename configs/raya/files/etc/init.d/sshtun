@@ -15,7 +15,7 @@ start_service() {
 
   procd_open_instance
   if [ $wan_up -eq 0 ]; then
-    procd_set_param command ssh -i "$identity_file" -T -N -y -K 60 -R "$port:localhost:22" -o ExitOnForwardFailure "$remote_user@$remote_host"
+    procd_set_param command ssh -i "$identity_file" -T -N -y -K 60 -R ":$port:localhost:22" -o "ExitOnForwardFailure=yes" "$remote_user@$remote_host"
     logger -p daemon.info -t 'sshtun' 'wan is up, starting'
   else
     procd_set_param command tail -f /dev/null
