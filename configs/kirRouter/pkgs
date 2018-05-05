@@ -21,6 +21,8 @@
 kmod-nls-utf8
 
 ip
+-odhcpd-ipv6only
+odhcpd
 ss
 6in4
 wpad-mini
