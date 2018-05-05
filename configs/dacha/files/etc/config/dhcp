@@ -25,6 +25,6 @@ config dhcp 'wan'
 	option ignore '1'
 
 config odhcpd 'odhcpd'
-	option maindhcp '1'
+	option maindhcp '0'
 	option leasefile '/tmp/hosts/odhcpd'
 	option leasetrigger '/usr/sbin/odhcpd-update'
