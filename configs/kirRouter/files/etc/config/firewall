@@ -100,13 +100,6 @@ config rule
 	option target 'ACCEPT'
 
 
-config rule
-	option name 'Allow-SMTP'
-	option src 'wan'
-	option proto 'tcp'
-	option dest_port '25'
-	option target 'ACCEPT'
-
 # IGMP
 config rule
 	option src      wan
