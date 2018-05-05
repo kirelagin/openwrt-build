@@ -25,6 +25,7 @@ ip
 odhcpd
 ss
 6in4
+wireguard
 wpad-mini
 
 ethtool

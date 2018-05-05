@@ -77,6 +77,13 @@ config rule
 	option dest_port '22'
 	option target 'ACCEPT'
 
+config rule
+	option name 'Allow-WireGuard'
+	option src '*'
+	option proto 'udp'
+	option dest_port '16200'
+	option target 'ACCEPT'
+
 
 config rule
 	option name 'Allow-DNS'
