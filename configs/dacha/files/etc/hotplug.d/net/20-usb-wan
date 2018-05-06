@@ -3,10 +3,13 @@
 if [ "${DEVPATH#/devices/platform/ehci-platform/usb1/}" != "$DEVPATH" ] ; then
   case $ACTION in
     add)
-      uci set network.wan.ifname=$INTERFACE
+      uci set network.wan.ifname="$INTERFACE"
       uci commit network
       /etc/init.d/network reload
-      echo "$INTERFACE" > "/sys/class/leds/tp-link:green:3g/device_name"
+
+      uci set system.led_usb.dev="$INTERFACE"
+      uci commit system
+      /etc/init.d/led reload
       ;;
   esac
 fi
