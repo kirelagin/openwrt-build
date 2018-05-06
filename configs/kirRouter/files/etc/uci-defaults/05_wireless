@@ -1,7 +1,5 @@
 #!/bin/sh
 
-. /lib/functions.sh
-
 
 uci batch <<EOF
 set wireless.@wifi-iface[0].ssid='kirNet'
@@ -15,7 +13,17 @@ set wireless.radio0.htmode='HT40'
 
 delete wireless.radio0.disabled
 EOF
-
 uci commit wireless
+
+uci delete system.led_wlan2g
+uci -q batch <<-EOF
+delete system.led_wlan5g
+set system.led_wlan5g='led'
+set system.led_wlan5g.name='WLAN5G'
+set system.led_wlan5g.sysfs='tp-link:green:wlan5g'
+set system.led_wlan5g.trigger='phy0tpt'
+EOF
+uci commit system
+
 
 exit 0

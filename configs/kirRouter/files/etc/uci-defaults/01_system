@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+uci batch <<EOF
+set system.@system[0].hostname='kirRouter'
+set system.@system[0].timezone='MSK-3'
+set system.@system[0].log_size='1024'
+EOF
+uci commit system
+
+exit 0
