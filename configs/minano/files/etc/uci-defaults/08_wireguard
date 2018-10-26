@@ -1,0 +1,36 @@
+#!/bin/sh
+
+
+uci -q delete network.wg0.addresses
+uci batch <<EOF
+set network.wg0='interface'
+set network.wg0.proto='wireguard'
+set network.wg0.listen_port='16200'
+add_list network.wg0.addresses='172.16.200.2/32'
+add_list network.wg0.addresses='2605:6400:30:fa9e::ff90:4002/128'
+EOF
+
+[ -f /etc/wireguard/key ] || {
+  mkdir -p /etc/wireguard
+  chmod 700 /etc/wireguard
+  touch /etc/wireguard/key
+  chmod 400 /etc/wireguard/key
+  wg genkey > /etc/wireguard/key
+}
+uci set network.wg0.private_key="$(cat /etc/wireguard/key)"
+
+uci -q delete network.@wireguard_wg0[0]
+uci batch <<EOF
+add network wireguard_wg0
+set network.@wireguard_wg0[-1].public_key='rARZ8RiUsiw806akjDC/RQpWOgu2yhSd6GA/WxQ70jc='
+add_list network.@wireguard_wg0[-1].allowed_ips='172.16.200.1/32'
+add_list network.@wireguard_wg0[-1].allowed_ips='2605:6400:30:fa9e::ff90:4001/128'
+set network.@wireguard_wg0[-1].route_allowed_ips='1'
+set network.@wireguard_wg0[-1].endpoint_host='vpn.s.kir.elagin.me'
+set network.@wireguard_wg0[-1].endpoint_port='16200'
+set network.@wireguard_wg0[-1].persistent_keepalive='25'
+EOF
+
+uci commit network
+
+exit 0

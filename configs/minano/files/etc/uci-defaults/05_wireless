@@ -1,0 +1,14 @@
+#!/bin/sh
+
+
+uci batch <<EOF
+set wireless.@wifi-iface[0].ssid='kirNet'
+set wireless.@wifi-iface[0].encryption='psk2'
+set wireless.@wifi-iface[0].key='probably_positive_inside_detail'
+
+delete wireless.radio0.disabled
+EOF
+uci commit wireless
+
+
+exit 0

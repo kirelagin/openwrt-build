@@ -1,0 +1,16 @@
+#!/bin/sh
+
+
+uci batch <<EOF
+set system.@system[0].hostname='minano'
+set system.@system[0].timezone='UTC'
+set system.@system[0].log_size='1024'
+
+set system.wlan='led'
+set system.wlan.name='WLAN'
+set system.wlan.sysfs='miwifi-nano:amber:status'
+set system.wlan.trigger='phy0tpt'
+EOF
+uci commit system
+
+exit 0
