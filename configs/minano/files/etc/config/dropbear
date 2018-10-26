@@ -1,0 +1,4 @@
+config dropbear
+        option RootLogin        '1'
+        option PasswordAuth     'off'
+#       option BannerFile       '/etc/banner'
