@@ -3,6 +3,8 @@ with import <nixpkgs> {};
 stdenv.mkDerivation {
   name = "openwrt-build";
   buildInputs = with pkgs; [
+    coreutils
+    curl
     file
     gawk
     gettext
