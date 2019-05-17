@@ -2,7 +2,6 @@
 
 if [ $BUTTON == "wps" ]; then
   path="/sys/class/leds/tp-link:green:wps"
-  echo win >> /tmp/but
 
   case $ACTION in
     pressed)
