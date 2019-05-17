@@ -23,8 +23,8 @@ uci -q delete network.@wireguard_wg0[0]
 uci batch <<EOF
 add network wireguard_wg0
 set network.@wireguard_wg0[-1].public_key='rARZ8RiUsiw806akjDC/RQpWOgu2yhSd6GA/WxQ70jc='
-add_list network.@wireguard_wg0[-1].allowed_ips='172.16.200.1/32'
-add_list network.@wireguard_wg0[-1].allowed_ips='2605:6400:30:fa9e::ff90:4001/128'
+add_list network.@wireguard_wg0[-1].allowed_ips='172.16.200.0/24'
+add_list network.@wireguard_wg0[-1].allowed_ips='2605:6400:30:fa9e::ff90:4000/120'
 set network.@wireguard_wg0[-1].route_allowed_ips='1'
 set network.@wireguard_wg0[-1].endpoint_host='vpn.s.kir.elagin.me'
 set network.@wireguard_wg0[-1].endpoint_port='16200'

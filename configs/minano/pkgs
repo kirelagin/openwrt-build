@@ -1,7 +1,6 @@
 -ppp
 -ppp-mod-pppoe
 
-
 kmod-nls-utf8
 
 ip
@@ -9,6 +8,7 @@ ip
 odhcpd
 ss
 wireguard
+kmod-ipt-nat6
 
 avahi-dbus-daemon
 avahi-daemon-service-ssh
