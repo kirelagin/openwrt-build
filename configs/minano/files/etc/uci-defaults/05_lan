@@ -8,13 +8,13 @@ EOF
 uci commit network
 
 uci batch <<EOF
-set dhcp.local.start='266'
-set dhcp.local.limit='245'
-set dhcp.local.dhcpv4='server'
-set dhcp.local.dhcpv6='disabled'
-set dhcp.local.ra_management='0'
-set dhcp.local.ra='server'
-set dhcp.local.ndp='disabled'
+set dhcp.lan.start='10'
+set dhcp.lan.limit='240'
+set dhcp.lan.dhcpv4='server'
+set dhcp.lan.dhcpv6='disabled'
+set dhcp.lan.ra_management='0'
+set dhcp.lan.ra='server'
+set dhcp.lan.ndp='disabled'
 EOF
 uci commit dhcp
 
