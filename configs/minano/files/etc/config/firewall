@@ -115,6 +115,7 @@ config rule
 	option src 'lan'
 	option proto 'udp'
 	option dest_port '67'
+	option family 'ipv4'
 	option target 'ACCEPT'
 
 config rule
