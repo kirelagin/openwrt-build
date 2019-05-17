@@ -8,6 +8,20 @@ set wireless.@wifi-iface[0].key='probably_positive_inside_detail'
 
 delete wireless.radio0.disabled
 EOF
+
+if ! uci -q get wireless.wwan >/dev/null; then
+  uci batch <<EOF
+set wireless.wwan='wifi-iface'
+set wireless.wwan.disabled='1'
+set wireless.wwan.device='radio0'
+set wireless.wwan.network='wan'
+set wireless.wwan.mode='sta'
+set wireless.wwan.ssid='SomeSSID'
+set wireless.wwan.encryption='psk2'
+set wireless.wwan.key='SomePassword'
+EOF
+fi
+
 uci commit wireless
 
 
