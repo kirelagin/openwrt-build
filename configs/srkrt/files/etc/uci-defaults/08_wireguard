@@ -5,8 +5,8 @@ uci -q delete network.wg0.addresses
 uci batch <<EOF
 set network.wg0='interface'
 set network.wg0.proto='wireguard'
-set network.wg0.listen_port='16200'
-add_list network.wg0.addresses='172.16.200.2/32'
+add_list network.wg0.addresses='172.20.0.36/32'
+add_list network.wg0.addresses='fd73:7272:ed50::36/128'
 EOF
 
 [ -f /etc/wireguard/key ] || {
@@ -21,11 +21,13 @@ uci set network.wg0.private_key="$(cat /etc/wireguard/key)"
 uci -q delete network.@wireguard_wg0[0]
 uci batch <<EOF
 add network wireguard_wg0
-set network.@wireguard_wg0[-1].public_key='rARZ8RiUsiw806akjDC/RQpWOgu2yhSd6GA/WxQ70jc='
-add_list network.@wireguard_wg0[-1].allowed_ips='172.16.200.1/32'
+set network.@wireguard_wg0[-1].public_key='sgLUARawWJejANs2CwuCptwJO55c4jkmnP0L14FNCyw='
+add_list network.@wireguard_wg0[-1].allowed_ips='172.20.0.0/24'
+add_list network.@wireguard_wg0[-1].allowed_ips='fd73:7272:ed50::/48'
 set network.@wireguard_wg0[-1].route_allowed_ips='1'
-set network.@wireguard_wg0[-1].endpoint_host='vpn.s.kir.elagin.me'
-set network.@wireguard_wg0[-1].endpoint_port='16200'
+set network.@wireguard_wg0[-1].endpoint_host='serokell.net'
+set network.@wireguard_wg0[-1].endpoint_port='35944'
+set network.@wireguard_wg0[-1].persistent_keepalive='25'
 EOF
 
 uci commit network
