@@ -19,7 +19,7 @@ target=$(cat "$host_target_file" | head -n 1)
 version_target="${openwrt_version:+$openwrt_version-}${target}"
 profile=$(cat "$host_target_file" | tail -n +2 | tail -n 1)
 
-builder_dir="$TMPDIR/openwrt-imagebuilder-$version_$target.Linux-x86_64"
+builder_dir="$TMPDIR/openwrt-imagebuilder-$version_target.Linux-x86_64"
 echo "Expecting builder at $builder_dir"
 if [ ! -d "$builder_dir" ]; then
   [ -n "$openwrt_version" ] || { echo "Set version!"; exit 2; }
