@@ -1,0 +1,16 @@
+#!/bin/sh
+
+
+uci batch <<EOF
+set system.@system[0].hostname='parnas'
+set system.@system[0].timezone='UTC'
+set system.@system[0].log_size='1024'
+
+set system.wlan='led'
+set system.wlan.name='WLAN'
+set system.wlan.sysfs='mir3g:yellow:status'
+set system.wlan.trigger='phy0tpt'
+EOF
+uci commit system
+
+exit 0

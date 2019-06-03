@@ -1,0 +1,158 @@
+config defaults
+	option syn_flood  1
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+
+config zone
+	option name 'lan'
+	list network 'lan'
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'ACCEPT'
+
+config zone
+	option name 'wan'
+	list network 'wan'
+	list network 'wan6'
+	option input 'REJECT'
+	option output 'ACCEPT'
+	option forward 'REJECT'
+	option masq '1'
+	option mtu_fix '1'
+
+config forwarding
+	option src 'lan'
+	option dest 'wan'
+
+
+config rule
+	option name 'Allow-Ping'
+	option src '*'
+	option proto 'icmp'
+	option icmp_type 'echo-request'
+	option family 'ipv4'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-ICMPv6-Input'
+	option src '*'
+	option proto 'icmp'
+	list icmp_type 'echo-request'
+	list icmp_type 'echo-reply'
+	list icmp_type 'destination-unreachable'
+	list icmp_type 'packet-too-big'
+	list icmp_type 'time-exceeded'
+	list icmp_type 'bad-header'
+	list icmp_type 'unknown-header-type'
+	list icmp_type 'router-solicitation'
+	list icmp_type 'neighbour-solicitation'
+	list icmp_type 'router-advertisement'
+	list icmp_type 'neighbour-advertisement'
+	option limit '1000/sec'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-ICMPv6-Forward'
+	option src '*'
+	option dest '*'
+	option proto 'icmp'
+	list icmp_type 'echo-request'
+	list icmp_type 'echo-reply'
+	list icmp_type 'destination-unreachable'
+	list icmp_type 'packet-too-big'
+	list icmp_type 'time-exceeded'
+	list icmp_type 'bad-header'
+	list icmp_type 'unknown-header-type'
+	option limit '1000/sec'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-WAN-DHCP'
+	option src 'wan'
+	option proto 'udp'
+	option dest_port '68'
+	option family 'ipv4'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-WAN-DHCPv6'
+	option src 'wan'
+	option proto 'udp'
+	option src_ip 'fc00::/6'
+	option dest_ip 'fc00::/6'
+	option dest_port '546'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+
+config rule
+	option name 'Allow-SSH'
+	option src '*'
+	option proto 'tcp'
+	option dest_port '22'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-WireGuard'
+	option src '*'
+	option proto 'udp'
+	option dest_port '16200'
+	option target 'ACCEPT'
+
+
+config rule
+	option name 'Allow-LAN-DNS'
+	option src 'lan'
+	option proto 'tcpudp'
+	option dest_port '53'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-LAN-DHCP'
+	option src 'lan'
+	option proto 'udp'
+	option dest_port '67'
+	option family 'ipv4'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-LAN-mDNS'
+	option src 'lan'
+	option proto 'udp'
+	option dest_port '5353'
+	option target 'ACCEPT'
+
+
+config rule
+	option name 'Allow-WAN-IGMP'
+	option src 'wan'
+	option proto 'igmp'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-WAN-Multicast'
+	option src 'wan'
+	option proto 'udp'
+	option dest 'lan'
+	option dest_ip '224.0.0.0/4'
+	option family 'ipv4'
+	option target 'ACCEPT'
+
+config rule
+	option name 'Allow-WAN-MLD'
+	option src 'wan'
+	option proto 'icmp'
+	option src_ip 'fe80::/10'
+	list icmp_type '130/0'
+	list icmp_type '131/0'
+	list icmp_type '132/0'
+	list icmp_type '143/0'
+	option family 'ipv6'
+	option target 'ACCEPT'
+
+
+config include
+	option path '/etc/firewall.user'
