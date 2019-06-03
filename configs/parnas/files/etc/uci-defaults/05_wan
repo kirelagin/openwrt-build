@@ -1,0 +1,18 @@
+#!/bin/sh
+
+
+uci -q delete network.wan.dns
+uci batch <<EOF
+add_list network.wan.dns='1.1.1.1'
+add_list network.wan.dns='1.0.0.1'
+set network.wan.peerdns='0'
+EOF
+uci -q delete network.wan6.dns
+uci batch <<EOF
+add_list network.wan6.dns='2606:4700:4700::1111'
+add_list network.wan6.dns='2606:4700:4700::1001'
+set network.wan6.peerdns='0'
+EOF
+uci commit network
+
+exit 0
