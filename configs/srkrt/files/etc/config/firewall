@@ -33,9 +33,9 @@ config forwarding
 	option src 'lan'
 	option dest 'wan'
 
-config forwarding
-	option src 'lan'
-	option dest 'vpn'
+#config forwarding
+#	option src 'lan'
+#	option dest 'vpn'
 
 
 config rule
