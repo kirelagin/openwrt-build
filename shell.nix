@@ -23,5 +23,7 @@ stdenv.mkDerivation {
     zlib.dev
     zlib.static
     wget
+
+    cacert
   ];
 }
