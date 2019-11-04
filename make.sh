@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-openwrt_version="18.06.2"
+openwrt_version="18.06.4"
 configs_dir="./configs"
 
 host="$1"
