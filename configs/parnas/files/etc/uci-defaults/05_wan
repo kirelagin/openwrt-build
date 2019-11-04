@@ -11,4 +11,9 @@ set network.wan6.peerdns='0'
 EOF
 uci commit network
 
+uci batch <<EOF
+set dhcp.odhcpd.maindhcp='1'
+EOF
+uci commit dhcp
+
 exit 0
