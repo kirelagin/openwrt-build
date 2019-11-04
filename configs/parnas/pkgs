@@ -10,9 +10,7 @@ ss
 wireguard
 kmod-ipt-nat6
 
-avahi-dbus-daemon
-avahi-daemon-service-ssh
-avahi-utils
 ethtool
 iwinfo
 tcpdump
+umdns
