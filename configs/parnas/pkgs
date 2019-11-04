@@ -2,8 +2,11 @@
 -ppp-mod-pppoe
 
 kmod-nls-utf8
+ca-bundle
 
 ip
+-dnsmasq
+unbound
 -odhcpd-ipv6only
 odhcpd
 ss
