@@ -1,0 +1,41 @@
+#!/bin/sh
+
+
+uci batch <<EOF
+set system.@system[0].hostname='dacha'
+set system.@system[0].timezone='MSK-3'
+set system.@system[0].log_size='1024'
+EOF
+
+## LED: LAN
+#uci batch <<EOF
+#set system.lan='led'
+#set system.lan.name='LAN'
+#set system.lan.sysfs='tp-link:green:lan'
+#set system.lan.trigger='netdev'
+#set system.lan.dev='eth0'
+#set system.lan.mode='link tx rx'
+#EOF
+
+# LED: uplink
+uci batch <<EOF
+set system.usb='led'
+set system.usb.name='USB'
+set system.usb.sysfs='tp-link:green:usb'
+set system.usb.trigger='netdev'
+set system.usb.dev='eth1'
+set system.usb.mode='link tx rx'
+EOF
+
+# LED: WPS
+uci batch <<EOF
+set system.wps='led'
+set system.wps.name='WPS'
+set system.wps.sysfs='tp-link:green:wps'
+set system.wps.trigger='none'
+set system.wps.default='0'
+EOF
+
+uci commit system
+
+exit 0

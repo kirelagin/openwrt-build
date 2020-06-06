@@ -7,7 +7,7 @@ if [ "${DEVPATH#/devices/platform/ehci-platform/usb1/}" != "$DEVPATH" ] ; then
       uci commit network
       /etc/init.d/network reload
 
-      uci set system.led_usb.dev="$INTERFACE"
+      uci set system.usb.dev="$INTERFACE"
       uci commit system
       /etc/init.d/led reload
       ;;

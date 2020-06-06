@@ -1,0 +1,10 @@
+#!/bin/sh
+
+uci batch <<EOF
+set network.wan='interface'
+set network.wan.ifname='eth1'
+set network.wan.proto='dhcp'
+EOF
+uci commit network
+
+exit 0

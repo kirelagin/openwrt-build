@@ -1,0 +1,15 @@
+#!/bin/sh
+
+
+uci batch <<EOF
+set wireless.@wifi-iface[0].ssid='daĉa'
+set wireless.@wifi-iface[0].encryption='psk2'
+set wireless.@wifi-iface[0].key='train_particles_replied_visitor'
+
+delete wireless.radio0.disabled
+EOF
+
+uci commit wireless
+
+
+exit 0
