@@ -1,0 +1,15 @@
+#!/bin/sh
+
+uci batch <<EOF
+set unbound.@unbound[0].add_wan_fqdn='1'
+set unbound.@unbound[0].dhcp_link='odhcpd'
+set unbound.@unbound[0].unbound_control='1'
+EOF
+uci commit unbound
+
+uci batch <<EOF
+set dhcp.odhcpd.leasetrigger='/usr/lib/unbound/odhcpd.sh'
+EOF
+uci commit dhcp
+
+exit 0
