@@ -1,6 +1,7 @@
 #!/bin/sh
 
-if [ "${DEVPATH#/devices/platform/ehci-platform/usb1/}" != "$DEVPATH" ] ; then
+# Note: this test does not work for removing the device (as the file is gone)
+if [ "$(readlink -f "/sys/$DEVPATH/device/subsystem")" == "/sys/bus/usb" ] ; then
   case $ACTION in
     add)
       uci set network.wan.ifname="$INTERFACE"
