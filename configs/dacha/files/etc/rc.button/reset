@@ -1,0 +1,14 @@
+#!/bin/sh
+
+path="/sys/class/leds/tp-link:green:wps"
+
+case "$ACTION" in
+  pressed)
+    echo 255 > "$path/brightness"
+    ;;
+  released)
+    echo 0 > "$path/brightness"
+    ;;
+esac
+
+return 0
