@@ -1,6 +1,6 @@
 #!/bin/sh
 
-led=$(uci get system.wps.sysfs)
+led=$(uci get system.led_wps.sysfs)
 [ -n "$led" ] || return 0
 path="/sys/class/leds/$led"
 
