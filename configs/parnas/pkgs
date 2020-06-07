@@ -5,9 +5,10 @@ kmod-ipt-nat6
 kmod-nls-utf8
 kmod-usb-net-rndis
 
+ip
 -dnsmasq
-unbound-control
 unbound-daemon
+unbound-control
 -odhcpd-ipv6only
 odhcpd
 umdns
@@ -17,7 +18,6 @@ bind-dig
 ca-bundle
 diffutils
 ethtool
-ip
 iwinfo
 ss
 tcpdump
