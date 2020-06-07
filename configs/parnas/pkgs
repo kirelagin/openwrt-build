@@ -6,8 +6,8 @@ kmod-nls-utf8
 kmod-usb-net-rndis
 
 -dnsmasq
-unbound
 unbound-control
+unbound-daemon
 -odhcpd-ipv6only
 odhcpd
 umdns
