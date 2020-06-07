@@ -19,16 +19,28 @@ EOF
 }
 uci set network.wg0.private_key="$(cat /etc/wireguard/key)"
 
-uci -q delete network.@wireguard_wg0[0]
+uci -q delete 'network.@wireguard_wg0[0]'
 uci batch <<EOF
+delete network.@wireguard_wg0[-1]
 add network wireguard_wg0
 set network.@wireguard_wg0[-1].public_key='rARZ8RiUsiw806akjDC/RQpWOgu2yhSd6GA/WxQ70jc='
-add_list network.@wireguard_wg0[-1].allowed_ips='172.16.200.0/24'
-add_list network.@wireguard_wg0[-1].allowed_ips='2605:6400:30:fa9e:ff00::0/72'
-set network.@wireguard_wg0[-1].route_allowed_ips='1'
+add_list network.@wireguard_wg0[-1].allowed_ips='0.0.0.0/0'
+add_list network.@wireguard_wg0[-1].allowed_ips='::/0'
+set network.@wireguard_wg0[-1].route_allowed_ips='0'
 set network.@wireguard_wg0[-1].endpoint_host='vpn.s.kir.elagin.me'
 set network.@wireguard_wg0[-1].endpoint_port='16200'
 set network.@wireguard_wg0[-1].persistent_keepalive='25'
+EOF
+
+uci -q delete 'network.@route[-1]'
+uci -q delete 'network.@route6[-1]'
+uci batch <<EOF
+add network route
+set network.@route[-1].interface='wg0'
+set network.@route[-1].target='172.16.200.0/24'
+add network route6
+set network.@route6[-1].interface='wg0'
+set network.@route6[-1].target='2605:6400:30:fa9e::ff90:4000/120'
 EOF
 
 uci commit network

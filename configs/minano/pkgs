@@ -10,9 +10,11 @@ ss
 wireguard
 kmod-ipt-nat6
 
+atftp
+atftpd
 ethtool
+htop
 iwinfo
+ncat
 tcpdump
 umdns
-
-ca-certificates
