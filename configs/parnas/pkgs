@@ -1,19 +1,23 @@
 -ppp
 -ppp-mod-pppoe
 
+kmod-ipt-nat6
 kmod-nls-utf8
-ca-bundle
+kmod-usb-net-rndis
 
-ip
 -dnsmasq
 unbound
 -odhcpd-ipv6only
 odhcpd
-ss
-wireguard
-kmod-ipt-nat6
-
-ethtool
-iwinfo
-tcpdump
 umdns
+wireguard
+
+bind-dig
+ca-bundle
+diffutils
+ethtool
+ip
+iwinfo
+ss
+tcpdump
+usbutils
