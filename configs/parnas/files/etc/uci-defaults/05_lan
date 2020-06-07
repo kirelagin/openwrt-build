@@ -8,6 +8,7 @@ EOF
 uci commit network
 
 uci batch <<EOF
+set dhcp.odhcpd.maindhcp='1'
 set dhcp.lan.start='10'
 set dhcp.lan.limit='240'
 set dhcp.lan.dhcpv4='server'
