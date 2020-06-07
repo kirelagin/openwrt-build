@@ -17,9 +17,18 @@
 -uhttpd
 -uhttpd-mod-ubus
 
-
+kmod-nls-utf8
 kmod-usb-net-asix
 kmod-usb-net-rndis
 
+ip
+ss
 wireguard
 wpad-basic
+
+ethtool
+iwinfo
+tcpdump
+umdns
+
+ca-certificates
