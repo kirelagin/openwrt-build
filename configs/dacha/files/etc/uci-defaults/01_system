@@ -7,15 +7,17 @@ set system.@system[0].timezone='MSK-3'
 set system.@system[0].log_size='1024'
 EOF
 
-## LED: LAN
-#uci batch <<EOF
-#set system.led_lan='led'
-#set system.led_lan.name='LAN'
-#set system.led_lan.sysfs='tl-mr3020-v3:green:lan'
+# LED: LAN led works poorly
+uci batch <<EOF
+set system.led_lan='led'
+set system.led_lan.name='LAN'
+set system.led_lan.sysfs='tl-mr3020-v3:green:lan'
+set system.led_lan.trigger='none'
+set system.led_lan.default='0'
 #set system.led_lan.trigger='netdev'
 #set system.led_lan.dev='eth0'
 #set system.led_lan.mode='link tx rx'
-#EOF
+EOF
 
 # LED: uplink
 uci batch <<EOF
