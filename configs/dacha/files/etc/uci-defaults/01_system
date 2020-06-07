@@ -9,31 +9,31 @@ EOF
 
 ## LED: LAN
 #uci batch <<EOF
-#set system.lan='led'
-#set system.lan.name='LAN'
-#set system.lan.sysfs='tp-link:green:lan'
-#set system.lan.trigger='netdev'
-#set system.lan.dev='eth0'
-#set system.lan.mode='link tx rx'
+#set system.led_lan='led'
+#set system.led_lan.name='LAN'
+#set system.led_lan.sysfs='tl-mr3020-v3:green:lan'
+#set system.led_lan.trigger='netdev'
+#set system.led_lan.dev='eth0'
+#set system.led_lan.mode='link tx rx'
 #EOF
 
 # LED: uplink
 uci batch <<EOF
-set system.usb='led'
-set system.usb.name='USB'
-set system.usb.sysfs='tp-link:green:usb'
-set system.usb.trigger='netdev'
-set system.usb.dev='eth1'
-set system.usb.mode='link tx rx'
+set system.led_usb='led'
+set system.led_usb.name='USB'
+set system.led_usb.sysfs='tl-mr3020-v3:green:3g'
+set system.led_usb.trigger='netdev'
+set system.led_usb.dev='eth1'
+set system.led_usb.mode='link tx rx'
 EOF
 
 # LED: WPS
 uci batch <<EOF
-set system.wps='led'
-set system.wps.name='WPS'
-set system.wps.sysfs='tp-link:green:wps'
-set system.wps.trigger='none'
-set system.wps.default='0'
+set system.led_wps='led'
+set system.led_wps.name='WPS'
+set system.led_wps.sysfs='tl-mr3020-v3:green:wps'
+set system.led_wps.trigger='none'
+set system.led_wps.default='0'
 EOF
 
 uci commit system

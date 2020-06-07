@@ -1,6 +1,8 @@
 #!/bin/sh
 
-path="/sys/class/leds/tp-link:green:wps"
+led=$(uci get system.wps.sysfs)
+[ -n "$led" ] || return 0
+path="/sys/class/leds/$led"
 
 case "$ACTION" in
   pressed)
