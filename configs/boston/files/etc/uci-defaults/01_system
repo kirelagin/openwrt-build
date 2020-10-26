@@ -1,0 +1,40 @@
+#!/bin/sh
+
+
+uci batch <<EOF
+set system.@system[0].hostname='lechat'
+set system.@system[0].timezone='EST5EDT,M3.2.0,M11.1.0'
+set system.@system[0].zonename='America/New York'
+set system.@system[0].log_size='1024'
+EOF
+
+uci batch <<EOF
+set system.status='led'
+set system.status.name='power'
+set system.status.sysfs='green:status'
+set system.status.trigger='none'
+set system.status.default='1'
+EOF
+
+uci delete system.led_lan
+uci batch <<EOF
+set system.wan='led'
+set system.wan.name='WAN'
+set system.wan.sysfs='green:lan'
+set system.wan.trigger='netdev'
+set system.wan.dev='eth1'
+set system.wan.mode='link tx rx'
+EOF
+
+# This one is scary red
+uci batch <<EOF
+set system.wlan='led'
+set system.wlan.name='WLAN'
+set system.wlan.sysfs='red:wlan'
+set system.wlan.trigger='none'
+set system.wlan.default='0'
+EOF
+
+uci commit system
+
+exit 0

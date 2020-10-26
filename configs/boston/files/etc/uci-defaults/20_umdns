@@ -1,0 +1,9 @@
+#!/bin/sh
+
+uci delete 'umdns.@umdns[0].network'
+uci batch <<EOF
+add_list umdns.@umdns[0].network=lan
+EOF
+uci commit umdns
+
+exit 0

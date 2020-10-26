@@ -1,0 +1,19 @@
+#!/bin/sh
+
+uci batch <<EOF
+set wireless.radio0.channel='1'
+EOF
+
+uci batch <<EOF
+set wireless.@wifi-iface[0].network='wan'
+set wireless.@wifi-iface[0].ssid='ChatNoir'
+set wireless.@wifi-iface[0].encryption='psk2'
+set wireless.@wifi-iface[0].key='<redacted>'
+
+delete wireless.radio0.disabled
+EOF
+
+uci commit wireless
+
+
+exit 0
