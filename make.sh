@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-openwrt_version="19.07.3"
+openwrt_version=""
 configs_dir="./configs"
 
 host="$1"
@@ -22,8 +22,11 @@ profile=$(cat "$host_target_file" | tail -n +2 | tail -n 1)
 builder_dir="$TMPDIR/openwrt-imagebuilder-$version_target.Linux-x86_64"
 echo "Expecting builder at $builder_dir"
 if [ ! -d "$builder_dir" ]; then
-  [ -n "$openwrt_version" ] || { echo "Set version!"; exit 2; }
-  generator_url="https://downloads.openwrt.org/releases/$openwrt_version/targets/${target/-/\/}/openwrt-imagebuilder-$version_target.Linux-x86_64.tar.xz"
+  if [ -z "$openwrt_version" ]; then
+    generator_url="https://downloads.openwrt.org/snapshots/targets/${target/-/\/}/openwrt-imagebuilder-$version_target.Linux-x86_64.tar.xz"
+  else
+    generator_url="https://downloads.openwrt.org/releases/$openwrt_version/targets/${target/-/\/}/openwrt-imagebuilder-$version_target.Linux-x86_64.tar.xz"
+  fi
   echo "Image generator is missing, downloading it from $generator_url"
   curl -f -C - -o "$builder_dir".tar.xz "$generator_url" || { echo "Could not download the generator"; exit 2; }
   tar -xf "$builder_dir.tar.xz" -C "$TMPDIR" || { echo "Could not extract the generator"; exit 2; }

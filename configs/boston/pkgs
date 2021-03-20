@@ -7,7 +7,7 @@ ip
 -odhcpd-ipv6only
 odhcpd
 ss
-wireguard
+wireguard-tools
 kmod-ipt-nat6
 
 atftp
