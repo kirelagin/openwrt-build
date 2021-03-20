@@ -3,6 +3,7 @@
 uci delete 'umdns.@umdns[0].network'
 uci batch <<EOF
 add_list umdns.@umdns[0].network=lan
+add_list umdns.@umdns[0].network=wan
 EOF
 uci commit umdns
 
