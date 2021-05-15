@@ -7,7 +7,6 @@ set network.wg0='interface'
 set network.wg0.proto='wireguard'
 set network.wg0.listen_port='16200'
 add_list network.wg0.addresses='172.16.200.2/32'
-add_list network.wg0.addresses='2605:6400:30:fa9e:ff02::1/128'
 EOF
 
 [ -f /etc/wireguard/key ] || {
@@ -38,9 +37,6 @@ uci batch <<EOF
 add network route
 set network.@route[-1].interface='wg0'
 set network.@route[-1].target='172.16.200.0/24'
-add network route6
-set network.@route6[-1].interface='wg0'
-set network.@route6[-1].target='2605:6400:30:fa9e::ff90:4000/120'
 EOF
 
 uci commit network

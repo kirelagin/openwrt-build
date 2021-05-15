@@ -7,7 +7,6 @@ set network.wg0='interface'
 set network.wg0.proto='wireguard'
 set network.wg0.listen_port='16200'
 add_list network.wg0.addresses='172.16.200.12/32'
-add_list network.wg0.addresses='2605:6400:30:fa9e:ff0c::1/128'
 EOF
 
 [ -f /etc/wireguard/key ] || {
@@ -24,7 +23,6 @@ uci batch <<EOF
 add network wireguard_wg0
 set network.@wireguard_wg0[-1].public_key='rARZ8RiUsiw806akjDC/RQpWOgu2yhSd6GA/WxQ70jc='
 add_list network.@wireguard_wg0[-1].allowed_ips='172.16.200.0/24'
-add_list network.@wireguard_wg0[-1].allowed_ips='2605:6400:30:fa9e:ff00::0/72'
 set network.@wireguard_wg0[-1].route_allowed_ips='1'
 set network.@wireguard_wg0[-1].endpoint_host='vpn.s.kir.elagin.me'
 set network.@wireguard_wg0[-1].endpoint_port='16200'
