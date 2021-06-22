@@ -1,9 +1,17 @@
 #!/bin/sh
 
 
+# FIXME: this will add a new device even if it exists
 uci batch <<EOF
-set network.wan.type='bridge'
+add network device
+set network.@device[-1].name='br-wan'
+set network.@device[-1].type='bridge'
+add_list network.@device[-1].ports='eth1'
+
+set network.wan.device='br-wan'
 set network.wan.proto='dhcp'
+set network.wan6.device='br-wan'
+set network.wan6.proto='dhcpv6'
 EOF
 uci commit network
 
