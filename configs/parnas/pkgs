@@ -12,9 +12,11 @@ unbound-daemon
 unbound-control
 -odhcpd-ipv6only
 odhcpd
-umdns
 wireguard
 
+avahi-daemon
+avahi-daemon-service-ssh
+avahi-utils
 bind-dig
 ca-bundle
 diffutils

@@ -13,9 +13,11 @@ kmod-ipt-nat6
 
 atftp
 atftpd
+avahi-daemon
+avahi-daemon-service-ssh
+avahi-utils
 ethtool
 htop
 iwinfo
 ncat
 tcpdump
-umdns

@@ -27,9 +27,11 @@ ss
 wireguard
 wpad-basic
 
+avahi-daemon
+avahi-daemon-service-ssh
+avahi-utils
 ethtool
 iwinfo
 tcpdump
-umdns
 
 ca-certificates

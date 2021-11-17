@@ -7,5 +7,7 @@ ip-tiny
 wireguard
 wpad-mini
 
+avahi-daemon
+avahi-daemon-service-ssh
+avahi-utils
 tcpdump-mini
-umdns
