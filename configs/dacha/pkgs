@@ -20,6 +20,7 @@
 kmod-nls-utf8
 kmod-usb-net-asix
 kmod-usb-net-rndis
+procd-seccomp
 
 ip
 ss

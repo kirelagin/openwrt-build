@@ -1,6 +1,8 @@
 ppp
 ppp-mod-pppoe
 
+procd-seccomp
+
 ip-tiny
 wireguard
 wpad-mini

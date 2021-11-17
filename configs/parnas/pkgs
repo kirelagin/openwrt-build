@@ -4,6 +4,7 @@
 kmod-ipt-nat6
 kmod-nls-utf8
 kmod-usb-net-rndis
+procd-seccomp
 
 ip
 -dnsmasq

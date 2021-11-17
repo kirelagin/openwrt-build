@@ -2,6 +2,7 @@
 -ppp-mod-pppoe
 
 kmod-nls-utf8
+procd-seccomp
 
 ip
 -odhcpd-ipv6only
