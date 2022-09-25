@@ -1,0 +1,29 @@
+#!/bin/sh
+
+
+uci batch <<EOF
+set system.@system[0].hostname='mikrotik'
+set system.@system[0].timezone='EST5EDT,M3.2.0,M11.1.0'
+set system.@system[0].zonename='America/New York'
+set system.@system[0].log_size='1024'
+EOF
+
+uci batch <<EOF
+set system.status='led'
+set system.status.name='power'
+set system.status.sysfs='green:power'
+set system.status.trigger='none'
+set system.status.default='1'
+EOF
+
+uci batch <<EOF
+set system.usr='led'
+set system.usr.name='usr'
+set system.usr.sysfs='green:user'
+set system.usr.trigger='none'
+set system.usr.default='0'
+EOF
+
+uci commit system
+
+exit 0

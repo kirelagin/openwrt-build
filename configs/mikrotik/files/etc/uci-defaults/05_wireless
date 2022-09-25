@@ -1,0 +1,16 @@
+#!/bin/sh
+
+for i in 0 1; do
+uci batch <<EOF
+set wireless.@wifi-iface[$i].ssid='kirNet'
+set wireless.@wifi-iface[$i].encryption='psk2'
+set wireless.@wifi-iface[$i].key='<redacted>'
+
+delete wireless.radio$i.disabled
+EOF
+done
+
+uci commit wireless
+
+
+exit 0
