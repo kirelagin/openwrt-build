@@ -6,6 +6,13 @@ set wireless.@wifi-iface[$i].ssid='kirNet'
 set wireless.@wifi-iface[$i].encryption='psk2'
 set wireless.@wifi-iface[$i].key='<redacted>'
 
+set wireless.@wifi-iface[$i].ieee80211k='1'
+
+set wireless.@wifi-iface[$i].bss_transition='1'
+set wireless.@wifi-iface[$i].time_advertisement='2'
+set wireless.@wifi-iface[$i].time_zone='EST5'
+set wireless.@wifi-iface[$i].wnm_sleep_mode='1'
+
 delete wireless.radio$i.disabled
 EOF
 done
