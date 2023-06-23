@@ -10,6 +10,21 @@ delete wireless.radio$i.disabled
 EOF
 done
 
+for i in 0 1; do
+uci batch <<EOF
+set wireless.@wifi-device[$i].country='US'
+set wireless.@wifi-device[$i].txpower='8'
+EOF
+done
+
+uci batch <<EOF
+set wireless.radio0.channel='11'
+set wireless.radio1.channel='52'
+
+set wireless.default_radio1.ieee80211r='1'
+set wireless.default_radio1.nasid='9483c406d76d'
+EOF
+
 uci commit wireless
 
 
