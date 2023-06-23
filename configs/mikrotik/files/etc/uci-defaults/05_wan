@@ -1,0 +1,9 @@
+#!/bin/sh
+
+uci batch <<EOF
+set network.wan.disabled='1'
+set network.wan6.disabled='1'
+EOF
+uci commit network
+
+exit 0
