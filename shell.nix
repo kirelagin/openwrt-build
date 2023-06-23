@@ -20,7 +20,7 @@ with pkgs; stdenv.mkDerivation {
     ncurses
     openssl
     perl
-    python2
+    python3
     subversion
     unzip
     zlib.dev
