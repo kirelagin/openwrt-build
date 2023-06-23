@@ -1,6 +1,9 @@
-with import <nixpkgs> {};
+let
+  nixpkgs = builtins.getFlake "nixpkgs";
+  pkgs = nixpkgs.legacyPackages.x86_64-linux;
+in
 
-stdenv.mkDerivation {
+with pkgs; stdenv.mkDerivation {
   name = "openwrt-build";
   buildInputs = with pkgs; [
     which
