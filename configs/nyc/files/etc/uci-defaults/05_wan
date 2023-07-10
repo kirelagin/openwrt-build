@@ -1,0 +1,21 @@
+#!/bin/sh
+
+
+uci batch <<EOF
+set network.wan.peerdns='0'
+add_list network.wan.dns='1.1.1.1'
+add_list network.wan.dns='1.0.0.1'
+
+set network.wan6.peerdns='0'
+add_list network.wan6.dns='2606:4700:4700::1111'
+add_list network.wan6.dns='2606:4700:4700::1001'
+EOF
+uci commit network
+
+uci batch <<EOF
+set dhcp.@dnsmasq[0].dnssec=1
+set dhcp.@dnsmasq[0].dnsseccheckunsigned=1
+EOF
+uci commit dhcp
+
+exit 0
