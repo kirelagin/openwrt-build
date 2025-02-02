@@ -1,0 +1,11 @@
+#!/bin/sh
+
+
+uci batch <<EOF
+add dhcp host
+set dhcp.@host[-1].name='home'
+set dhcp.@host[-1].mac='12:41:db:d6:c6:4f'
+set dhcp.@host[-1].ip='172.17.5.4'
+EOF
+
+uci commit dhcp

@@ -4,6 +4,8 @@
 kmod-nls-utf8
 procd-seccomp
 
+-dnsmasq
+dnsmasq-full
 ip
 -odhcpd-ipv6only
 odhcpd

@@ -10,7 +10,7 @@ set wireless.@wifi-iface[$i].ieee80211k='1'
 
 set wireless.@wifi-iface[$i].bss_transition='1'
 set wireless.@wifi-iface[$i].time_advertisement='2'
-set wireless.@wifi-iface[$i].time_zone='EST5'
+set wireless.@wifi-iface[$i].time_zone='EST8'
 set wireless.@wifi-iface[$i].wnm_sleep_mode='1'
 
 delete wireless.radio$i.disabled
@@ -20,13 +20,13 @@ done
 for i in 0 1; do
 uci batch <<EOF
 set wireless.@wifi-device[$i].country='US'
-set wireless.@wifi-device[$i].txpower='16'
+#set wireless.@wifi-device[$i].txpower='16'
 EOF
 done
 
 uci batch <<EOF
-set wireless.radio0.disabled='1'
-set wireless.radio1.channel='100'
+set wireless.radio0.channel='6'
+set wireless.radio1.channel='36'
 
 set wireless.default_radio1.ieee80211r='1'
 set wireless.default_radio1.nasid='488f5a7db36f'
