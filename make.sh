@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-openwrt_version="22.03.5"
+openwrt_version="23.05.5"
 configs_dir="./configs"
 
 host="$1"
@@ -18,6 +18,10 @@ host_files_dir="$configs_dir/$host/files"
 target=$(cat "$host_target_file" | head -n 1)
 version_target="${openwrt_version:+$openwrt_version-}${target}"
 profile=$(cat "$host_target_file" | tail -n +2 | tail -n 1)
+
+
+export TMPDIR=/tmp  # override nix shell's ephemeral tmpdir
+mkdir -p "$TMPDIR"
 
 builder_dir="$TMPDIR/openwrt-imagebuilder-$version_target.Linux-x86_64"
 echo "Expecting builder at $builder_dir"

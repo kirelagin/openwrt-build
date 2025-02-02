@@ -12,8 +12,8 @@ odhcpd
 ss
 wireguard-tools
 kmod-ipt-nat6
--wpad-basic-wolfssl
-wpad-wolfssl
+-wpad-basic-mbedtls
+wpad-openssl
 
 avahi-daemon
 avahi-daemon-service-ssh
